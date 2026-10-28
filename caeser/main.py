@@ -73,3 +73,24 @@ def caeser_decrypt(cipher_text):
 		print(result)
 	return result
 
+
+
+def main():
+	print("Caesar cipher\n")
+	print("(1) Encrypt message")
+	print("(2) Decrypt message")
+
+	choice = input("> ").strip()
+
+	if choice == "1":
+		text = input("Enter text to encrypt (lowercase only): ").lower().strip()
+		encrypted = caeser_encrypt(text)
+		print(f"\nFinal Ciphertext: {encrypted}")
+	elif choice == "2":
+		cipher = input("Enter text to decrypt (lowercase only): ").lower().strip()
+		decrypted = caeser_decrypt(cipher)
+		print(f"\nFinal Plaintext: {decrypted}")
+	else:
+		print("Invalid option.")
+
+main()
