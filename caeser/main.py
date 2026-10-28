@@ -44,10 +44,9 @@ def caeser_encrypt(text):
 		# convert ascii value to character and concatenate it to final result
 		result = result + chr(new_char_position)
 		
-		print(result)
 	return result
 
-def caeser_decrypt(cipher_text):
+def caeser_decrypt(cipher_text, key=1):
 	result = ""
 	
 	# go through each character of the text in this for loop
@@ -60,7 +59,7 @@ def caeser_decrypt(cipher_text):
 		char_position = char_position - 97
 
 		# subtract 3 to the position, as caeser does.
-		new_char_position = char_position - 3
+		new_char_position = char_position - key
 
 		# make sure that the position does not surpass 26
 		new_char_position = new_char_position % 26
@@ -70,9 +69,14 @@ def caeser_decrypt(cipher_text):
 
 		result = result + chr(new_char_position)
 
-		print(result)
 	return result
 
+
+def brutefore_shift(cipher_text):
+	print("Bruteforce table")
+	for k in range(1, 26):
+		attempt = caeser_decrypt(cipher_text, key=k)
+		print(f"Key: {k} -> {attempt}")
 
 
 def main():
@@ -88,8 +92,7 @@ def main():
 		print(f"\nFinal Ciphertext: {encrypted}")
 	elif choice == "2":
 		cipher = input("Enter text to decrypt (lowercase only): ").lower().strip()
-		decrypted = caeser_decrypt(cipher)
-		print(f"\nFinal Plaintext: {decrypted}")
+		decrypted = brutefore_shift(cipher)
 	else:
 		print("Invalid option.")
 
